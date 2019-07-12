@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alan.eventservice.dao.DeviceMapper" >
+
+    <resultMap id="BaseResultMap" type="com.alan.eventservice.model.Device" >
+        <id column="dev_id" property="id" jdbcType="INTEGER" />
+        <result column="site_id" property="siteId" jdbcType="INTEGER" />
+        <result column="dev_name" property="name"  jdbcType="VARCHAR" />
+        <result column="dev_token" property="token" jdbcType="VARCHAR" />
+        <result column="dev_info" property="info" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        *
+    </sql>
+
+    <select id="getRowsBySite" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM devices where site_id = #{siteId} order by dev_id
+    </select>
+
+    <select id="getOneByName" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM devices where dev_name = #{name}
+    </select>
+
+    <select id="getOneByToken" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM devices where dev_token = #{name}
+    </select>
+</mapper>

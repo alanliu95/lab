@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>data</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://localhost:10086/js/current.js?r=12"></script>
+    <script src="http://localhost:10086/js/echarts.js?r=12"></script>
+</head>
+<body>
+
+<!--<div th:include="header.html" id="header">-->
+<!--</div>-->
+<!--class="col-lg-6"-->
+<div class="container" id="section" >
+    <div class="row" style="margin-top: 200px">
+        <div>
+            <div id="debug"></div>
+            <div style="margin-bottom: 20px">
+                场地：<select data-width="80px" id="site" onchange="setDev()" style="width:150px;" ></select>
+                设备：<select data-width="80px" id="device" style="width:150px;"></select>
+                <button onclick="getRecords()">查询</button>
+            </div>
+            <div style="display:none;">记录：<div id="record"></div>
+            </div>
+            <div id="main" style="width: 600px;height:400px; background-color: antiquewhite ">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+</div>
+</body>
+</html>

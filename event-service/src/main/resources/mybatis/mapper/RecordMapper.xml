@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alan.eventservice.dao.RecordMapper" >
+
+    <resultMap id="BaseResultMap" type="com.alan.eventservice.model.Record" >
+        <id column="rec_id"     property="id"       jdbcType="INTEGER" />
+        <result column="dev_id" property="devId"    jdbcType="INTEGER" />
+        <result column="ts"     property="ts"       />
+        <result column="mem"    property="mem"      jdbcType="FLOAT" />
+        <result column="cpu"    property="cpu"      jdbcType="FLOAT" />
+    </resultMap>
+
+    <!--<resultMap id="tsMap" type="com.alibaba.fastjson.JSONObject">-->
+        <!--<result column="ts" property="ts" jdbcType="TIMESTAMP"/>-->
+        <!--<result column="cpu" property="cpu"/>-->
+        <!--<result column="mem" property="mem"/>-->
+    <!--</resultMap>-->
+
+    <!--<select id="getTs" resultMap="tsMap">-->
+      <!--SELECT-->
+      <!--ts,-->
+      <!--cpu,-->
+      <!--mem-->
+      <!--FROM records-->
+      <!--where dev_id = #{token}-->
+
+    <!--</select>-->
+
+    <select id="getRowsByDevice" resultMap="BaseResultMap" >
+     select t.* from (select * from records where dev_id=#{token} order by ts desc limit 10) t order by t.ts
+    </select>
+
+    <insert id="insertOne" parameterType="com.alan.eventservice.model.Record" >
+       INSERT INTO
+       		records
+       		(dev_id,ts,cpu,mem)
+       	VALUES
+       		(#{devId}, #{ts}, #{cpu},#{mem})
+    </insert>
+</mapper>
